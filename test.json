@@ -1,0 +1,21 @@
+{
+    "workExperience": "Work experience",
+    "ithogskolan": {
+        "company": "IT-Högskolan",
+        "date": "Aug 2021- Jun 2023",
+        "position": "Frontend developer",
+        "description": "Im currently a student at IT-Högskolan, I'll be finished with the studies in June 2023."
+    },
+    "it": {
+        "company": "Torekällgymnasiet",
+        "date": "Aug 2009 - Jun 2010",
+        "position": "Programmer, Web developing",
+        "description": "I started to study Web developiong when I was younger but lost interest and changed program to counstruction."
+    },
+    "construction": {
+        "company": "Torekällgymnasiet",
+        "date": "Aug 2010 - Jun 2013",
+        "position": "Concrete worker/rebar worker",
+        "description": "I studied to become a concrete/rebar worker because I found it fun. I always been creative so i gave it a shot."
+    }
+}
