@@ -9,19 +9,23 @@ import {
 } from "../components/styled.components";
 
 const StyledArticle = styled.article`
+	flex-shrink: 1;
 	display: flex;
 	flex-direction: column;
-	width: 30%;
+	max-width: 30%;
 	text-align: center;
 	padding: 1rem;
 	margin: 1rem;
-	border: 1px solid black;
 	border-radius: 10px;
-	background-color: #f95b066b;
+	background-color: #ff59005a;
 	color: #000000;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	.date {
 		font-weight: 400;
 		font-style: italic;
+	}
+	@media screen and (max-width: 850px) {
+		min-width: 13rem;
 	}
 `;
 const StyledInformation = styled.aside`
@@ -34,6 +38,7 @@ const StyledLifeExperience = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 `;
+
 const AboutPage = ({ data }) => {
 	const [about] = data.allContentfulAboutMe.nodes;
 

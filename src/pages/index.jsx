@@ -1,17 +1,21 @@
 import * as React from "react";
 import "../main.css";
-import styled from "styled-components";
-import { Link, graphql } from "gatsby";
-import { useEffect } from "react";
+import { graphql } from "gatsby";
 import Header from "../components/header";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { StyledHeading } from "../components/styled.components";
-import { StyledImgHome } from "../components/styled.components";
+import {
+	StyledImgHome,
+	StyledWelcomePhrase,
+} from "../components/styled.components";
 
 const IndexPage = ({ data }) => {
 	return (
 		<>
 			<Header menu={data.allContentfulNav.nodes} />
+			{data.allContentfulHome.nodes.map((node) => (
+				<StyledWelcomePhrase>{node.welcome}</StyledWelcomePhrase>
+			))}
+
 			{data.allContentfulHome.nodes.map((node) => (
 				<main className="home-wrapper">
 					<aside className="home-aside">
@@ -30,6 +34,7 @@ export const query = graphql`
 		allContentfulHome {
 			nodes {
 				title
+				welcome
 				description {
 					raw
 				}

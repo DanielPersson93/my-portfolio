@@ -8,7 +8,6 @@ const StyledLink = styled(Link)`
 	font-size: x-large;
 	color: black;
 	transition: ease-in 0.3s;
-	/* padding: 1rem; */
 
 	&:hover {
 		text-decoration: underline;
@@ -30,9 +29,7 @@ const ContactPage = ({ data }) => {
 					))}
 				</StyledContactInformation>
 				{data.allContentfulContactMe.nodes.map((node) => (
-					<aside>
-						<img src={node.picture.url} alt={node.picture.title} />
-					</aside>
+					<img src={node.picture.url} alt={node.picture.title} />
 				))}
 			</main>
 		</>

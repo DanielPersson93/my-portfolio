@@ -1,4 +1,3 @@
-import { Link } from "gatsby";
 import styled from "styled-components";
 
 export const StyledHeading = styled.h1`
@@ -26,16 +25,34 @@ export const StyledImg = styled.img`
 
 export const StyledNav = styled.nav`
 	max-width: 100%;
-	padding: 1rem;
+	padding: 2rem 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+`;
+export const StyledLinksAboutProjects = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 33.333%;
+`;
+export const StyledLinksLogo = styled.div`
+	display: flex;
+	justify-content: center;
+	width: 33.333%;
 	img {
 		display: flex;
 		align-items: center;
 	}
 `;
-
+export const StyledWelcomePhrase = styled.h1`
+	padding: 2rem;
+	text-align: center;
+`;
+export const StyledLinksContact = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	width: 33.333%;
+`;
 export const StyledFilter = styled.div`
 	padding-top: 1rem;
 	display: flex;
@@ -50,11 +67,7 @@ export const StyledContactInformation = styled.div`
 export const StyledWorkExperienceEducation = styled.aside`
 	margin-top: 1rem;
 	border-radius: 10px;
-	/* padding: 1rem; */
-	/* border: 1px solid black; */
-	flex-grow: 1;
 	text-align: left;
-	/* align-self: center; */
 `;
 export const StyledHeadingLifeExperience = styled.h2`
 	padding: 0;
