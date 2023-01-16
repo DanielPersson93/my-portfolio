@@ -3,10 +3,6 @@ import styled from "styled-components";
 import { graphql } from "gatsby";
 import Header from "../components/header";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import {
-	StyledWorkExperienceEducation,
-	StyledHeadingLifeExperience,
-} from "../components/styled.components";
 
 const StyledArticle = styled.article`
 	flex-shrink: 1;
@@ -28,6 +24,14 @@ const StyledArticle = styled.article`
 		min-width: 13rem;
 	}
 `;
+const StyledWorkExperienceEducation = styled.aside`
+	margin-top: 1rem;
+	border-radius: 10px;
+	text-align: left;
+`;
+const StyledHeadingLifeExperience = styled.h2`
+	padding: 0;
+`;
 const StyledInformation = styled.aside`
 	max-width: 50rem;
 	padding: 1rem;
@@ -42,7 +46,6 @@ const StyledLifeExperience = styled.div`
 const AboutPage = ({ data }) => {
 	const [about] = data.allContentfulAboutMe.nodes;
 
-	console.log(data.allContentfulWorkExperience.nodes);
 	return (
 		<>
 			<Header menu={data.allContentfulNav.nodes} />
@@ -56,29 +59,29 @@ const AboutPage = ({ data }) => {
 						<StyledHeadingLifeExperience>
 							Work Experience
 						</StyledHeadingLifeExperience>
-						{data.allContentfulWorkExperience.nodes.map((work) => (
-							<StyledWorkExperienceEducation>
+						{data.allContentfulWorkExperience.nodes.map((work, index) => (
+							<StyledWorkExperienceEducation key={`${work.company}-${index}`}>
 								<p className="date">{work.date}</p>
 								<h3>{work.company}</h3>
 								<h4>{work.role}</h4>
-								<p>
-									{documentToReactComponents(JSON.parse(work.description.raw))}
-								</p>
+
+								{documentToReactComponents(JSON.parse(work.description.raw))}
 							</StyledWorkExperienceEducation>
 						))}
 					</StyledArticle>
 					<StyledArticle>
 						<StyledHeadingLifeExperience>Education</StyledHeadingLifeExperience>
-						{data.allContentfulEducation.nodes.map((education) => (
-							<StyledWorkExperienceEducation>
+						{data.allContentfulEducation.nodes.map((education, index) => (
+							<StyledWorkExperienceEducation
+								key={`${education.company}-${index}`}
+							>
 								<p className="date">{education.date}</p>
 								<h3>{education.school}</h3>
 								<h4>{education.role}</h4>
-								<p>
-									{documentToReactComponents(
-										JSON.parse(education.description.raw)
-									)}
-								</p>
+
+								{documentToReactComponents(
+									JSON.parse(education.description.raw)
+								)}
 							</StyledWorkExperienceEducation>
 						))}
 					</StyledArticle>

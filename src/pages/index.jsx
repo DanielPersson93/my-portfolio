@@ -3,28 +3,92 @@ import "../main.css";
 import { graphql } from "gatsby";
 import Header from "../components/header";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import {
-	StyledImgHome,
-	StyledWelcomePhrase,
-} from "../components/styled.components";
+import { StyledProfileImage } from "../components/styled.components";
+import styled from "styled-components";
+
+const StyledWelcomePhrase = styled.h1`
+	padding: 2rem;
+	text-align: center;
+`;
+const StyledSkillsBlock = styled.div`
+	grid-gap: 0.3rem;
+	display: grid;
+	grid-template-columns: auto auto;
+
+	@media screen and (max-width: 1000px) {
+		justify-content: center;
+		padding: 0 0 2rem 0;
+	}
+`;
+const StyledParagraph = styled.code`
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	border-radius: 8px;
+	padding: 0.2rem;
+	background-color: #ff6a00;
+	color: #000000;
+`;
+const StyledSkillsHeading = styled.h2`
+	margin: 0;
+	padding: 1rem 0 0 0;
+	text-decoration: none;
+`;
+const StyledHomeContainer = styled.article`
+	display: flex;
+	justify-content: space-between;
+	@media screen and (max-width: 1000px) {
+		flex-direction: column;
+		align-items: center;
+		aside {
+			p,
+			h1,
+			h2 {
+				text-align: center;
+			}
+			order: 2;
+		}
+		img {
+			order: 1;
+		}
+	}
+	@media screen {
+	}
+`;
 
 const IndexPage = ({ data }) => {
 	return (
 		<>
 			<Header menu={data.allContentfulNav.nodes} />
-			{data.allContentfulHome.nodes.map((node) => (
-				<StyledWelcomePhrase>{node.welcome}</StyledWelcomePhrase>
-			))}
-
-			{data.allContentfulHome.nodes.map((node) => (
-				<main className="home-wrapper">
-					<aside className="home-aside">
-						<h1>{node.bigText}</h1>
-						{documentToReactComponents(JSON.parse(node.description.raw))}
-					</aside>
-					<StyledImgHome src={node.picture.url} alt={node.title} />
-				</main>
-			))}
+			<main className="home-wrapper">
+				{data.allContentfulHome.nodes.map((node, index) => (
+					<StyledWelcomePhrase key={`${node.title}-${index}`}>
+						{node.welcome}
+					</StyledWelcomePhrase>
+				))}
+				<StyledHomeContainer>
+					{data.allContentfulHome.nodes.map((node, index) => (
+						<aside className="home-aside" key={`${node.title}-${index}`}>
+							<h1>{node.bigText}</h1>
+							{documentToReactComponents(JSON.parse(node.description.raw))}
+							<StyledSkillsHeading>Skills</StyledSkillsHeading>
+							<StyledSkillsBlock>
+								<StyledParagraph>TypeScript</StyledParagraph>
+								<StyledParagraph>CSS</StyledParagraph>
+								<StyledParagraph>JavaScript</StyledParagraph>
+								<StyledParagraph>PHP</StyledParagraph>
+							</StyledSkillsBlock>
+						</aside>
+					))}
+					{data.allContentfulHome.nodes.map((picture, index) => (
+						<StyledProfileImage
+							key={`${picture.picture.title}-${index}`}
+							src={picture.picture.url}
+							alt={picture.picture.title}
+						/>
+					))}
+				</StyledHomeContainer>
+			</main>
 		</>
 	);
 };

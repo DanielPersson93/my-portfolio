@@ -2,9 +2,23 @@ import * as React from "react";
 import styled from "styled-components";
 import { Link, graphql } from "gatsby";
 import Header from "../components/header";
-import { StyledContactInformation } from "../components/styled.components";
+import { StyledProfileImage } from "../components/styled.components";
 
-const StyledLink = styled(Link)`
+const StyledContactInformation = styled.div`
+	order: 2;
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	padding: 2rem;
+	a {
+		margin: 0.5rem 0;
+
+		&:hover {
+			transform: translateX(20px);
+		}
+	}
+`;
+const StyledLink = styled.a`
 	font-size: x-large;
 	color: black;
 	transition: ease-in 0.3s;
@@ -14,6 +28,23 @@ const StyledLink = styled(Link)`
 		color: #f95a06;
 		transition: ease-in 0.3s;
 	}
+	&:active {
+		transition: ease-in 0s;
+		color: #f95a06;
+	}
+`;
+const StyledContaktLinks = styled.aside`
+	display: flex;
+	align-items: center;
+	img {
+		margin: 0 1rem;
+	}
+	/* justify-content: space-between; */
+
+	/* display: flex;
+		align-self: center;
+		justify-content: space-between;
+	} */
 `;
 
 const ContactPage = ({ data }) => {
@@ -21,16 +52,22 @@ const ContactPage = ({ data }) => {
 		<>
 			<Header menu={data.allContentfulNav.nodes} />
 			<main className="contact-wrapper">
+				{data.allContentfulContactMe.nodes.map((picture, pictureIndex) => (
+					<StyledProfileImage
+						src={picture.picture.url}
+						alt={picture.picture.title}
+						key={`${picture.title}-${pictureIndex}`}
+					/>
+				))}
 				<StyledContactInformation>
-					{data.allContentfulContactLinks.nodes.map((links) => (
-						<>
+					<h2>Contact me</h2>
+					{data.allContentfulContactLinks.nodes.map((links, index) => (
+						<StyledContaktLinks key={`${links.title}-${index}`}>
+							<img src={links.linkLogo.url} alt={links.title} />
 							<StyledLink href={links.url}>{links.title}</StyledLink>
-						</>
+						</StyledContaktLinks>
 					))}
 				</StyledContactInformation>
-				{data.allContentfulContactMe.nodes.map((node) => (
-					<img src={node.picture.url} alt={node.picture.title} />
-				))}
 			</main>
 		</>
 	);
