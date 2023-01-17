@@ -107,4 +107,4 @@ export const query = graphql`
 `;
 
 export default ContactPage;
-export const Head = () => <title>My Portfolio</title>;
+export const Head = () => <title>Contact me</title>;

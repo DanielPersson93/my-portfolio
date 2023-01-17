@@ -114,4 +114,4 @@ export const query = graphql`
 
 export default SinglePage;
 
-export const Head = () => <title>My Portfolio</title>;
+export const Head = () => <title>Project</title>;

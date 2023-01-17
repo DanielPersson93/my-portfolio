@@ -105,4 +105,4 @@ export const query = graphql`
 `;
 
 export default ProjectsPage;
-export const Head = () => <title>My Portfolio</title>;
+export const Head = () => <title>Projects</title>;

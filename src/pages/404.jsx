@@ -50,4 +50,4 @@ const PageNotFound = () => {
 
 export default PageNotFound;
 
-export const Head = () => <title>Hello</title>;
+export const Head = () => <title>Page not Found</title>;

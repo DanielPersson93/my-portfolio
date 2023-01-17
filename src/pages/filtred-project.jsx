@@ -108,4 +108,4 @@ export const query = graphql`
 
 export default filtredProject;
 
-export const Head = () => <title>My Portfolio</title>;
+export const Head = () => <title>Filtred project</title>;

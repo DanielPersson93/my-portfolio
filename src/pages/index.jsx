@@ -130,4 +130,4 @@ export const query = graphql`
 
 export default IndexPage;
 
-export const Head = () => <title>My Portfolio</title>;
+export const Head = () => <title>Home</title>;
