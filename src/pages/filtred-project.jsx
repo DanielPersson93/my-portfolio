@@ -80,7 +80,7 @@ const filtredProject = ({ data }) => {
  */
 export const query = graphql`
 	query FiltredListPageQuery($category: String) {
-		allContentfulPost(filter: { category: { eq: $category } }) {
+		allContentfulPost(filter: { category: { category: { eq: $category } } }) {
 			nodes {
 				slug
 				title
@@ -89,12 +89,11 @@ export const query = graphql`
 					url
 					title
 				}
-				category
-				content {
-					raw
+				category {
+					category
 				}
 			}
-			distinct(field: { category: SELECT })
+			distinct(field: { category: { category: SELECT } })
 		}
 		allContentfulNav {
 			nodes {

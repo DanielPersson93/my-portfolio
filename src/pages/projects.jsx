@@ -77,6 +77,7 @@ const ProjectsPage = ({ data }) => {
 /**
  * Detta är min fråga som går till contentful,
  * den hämtar allContentfulPost och allContentfulNav
+ *
  */
 export const query = graphql`
 	query ProjectPageQuery {
@@ -87,14 +88,9 @@ export const query = graphql`
 				excerpt
 				projectPictures {
 					url
-					title
-				}
-				category
-				content {
-					raw
 				}
 			}
-			distinct(field: { category: SELECT })
+			distinct(field: { category: { category: SELECT } })
 		}
 
 		allContentfulNav {

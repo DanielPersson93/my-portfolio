@@ -40,7 +40,9 @@ exports.createPages = async ({ graphql, actions }) => {
         query getAllSlugs {
             allContentfulPost {
                 nodes {
-                    category
+                    category{
+                        category
+                    }
                     
                 }
             }
@@ -53,11 +55,11 @@ exports.createPages = async ({ graphql, actions }) => {
     filtredData.allContentfulPost.nodes.forEach(node => {
         actions.createPage({
             //URL
-            path: '/projects/' + node.category,
+            path: '/projects/' + node.category.category,
             // Template
             component: path.resolve('./src/pages/filtred-project.jsx'),
             //Content
-            context: { category: node.category }
+            context: { category: node.category.category }
         })
     })
 
