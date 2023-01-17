@@ -33,6 +33,10 @@ const StyledHeading = styled.h1`
 	animation: float 6s ease-in-out infinite;
 	font-weight: 700;
 `;
+/**
+ * Denna funktion skapar upp vår 404 sida.
+ * @returns PageNotFound
+ */
 const PageNotFound = () => {
 	return (
 		<StyledMain>

@@ -28,8 +28,17 @@ const LinkStyled = styled(Link)`
 	}
 
 	@media (max-width: 600px) {
+		padding: 1rem 2rem;
 		display: block;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 		width: 100%;
+
+		&:not(:last-child) {
+			border-top: 1px solid rgba(0, 0, 0, 0.3);
+		}
+		&:active {
+			transform: translate(-10%, 0);
+		}
 	}
 `;
 const StyledLinksAboutProjects = styled.div`
@@ -38,6 +47,7 @@ const StyledLinksAboutProjects = styled.div`
 	width: 33.333%;
 
 	@media (max-width: 600px) {
+		background-color: #f69b6a;
 		justify-content: flex-end;
 		width: 140px;
 		display: block;
@@ -62,9 +72,14 @@ const StyledContactLink = styled(Link)`
 	color: #000000;
 	background-color: #f95b06;
 	border-radius: 1rem;
-	padding: 0.5rem;
+	box-sizing: border-box;
+	padding: 0.5rem 1.5rem;
 	text-align: center;
 	transition: ease-in 0.3s;
+	@media screen and (max-width: 400px) {
+		padding: 0.5rem 1rem;
+		font-size: medium;
+	}
 
 	&:hover {
 		transition: ease-in 0.3s;
@@ -80,6 +95,8 @@ const StyledContactLink = styled(Link)`
 const StyledSvg = styled.svg`
 	text-align: right;
 	border-radius: 100%;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
 
 	&:active {
 		transition: ease-in 0s;
@@ -91,12 +108,29 @@ const StyledSvg = styled.svg`
 	}
 `;
 
+const StyledOverlay = styled.div`
+	background: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+`;
+/**
+ * Denna funktion tar emot menu som en prop, varje parent gör frågan mot contentful och skickar den till header.jsx.
+ * Menyn ser likadan ut på alla undersidor.
+ * @param {*} menu
+ * @returns HeaderPage
+ */
 const Header = ({ menu }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleMenu = () => {
 		setIsOpen((open) => !open);
 	};
+
+	const closeMenu = () => setIsOpen(false);
 
 	return (
 		<>
@@ -125,14 +159,18 @@ const Header = ({ menu }) => {
 					<LinkStyled to="/projects">Projects</LinkStyled>
 				</StyledLinksAboutProjects>
 				<StyledLinksLogo>
-					<Link to="/">
-						<img src={menu[0].icon.url} alt={menu[0].icon.title} />
-					</Link>
+					{menu.map((logo, index) => (
+						<Link to="/" key={`${logo.icon.title}-${index}`}>
+							<img src={logo.icon.url} alt={logo.icon.title} />
+						</Link>
+					))}
 				</StyledLinksLogo>
 				<StyledLinksContact>
 					<StyledContactLink to="/contactme">Contact</StyledContactLink>
 				</StyledLinksContact>
 			</StyledNav>
+
+			{isOpen && <StyledOverlay onClick={closeMenu} />}
 		</>
 	);
 };

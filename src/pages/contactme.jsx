@@ -39,14 +39,13 @@ const StyledContaktLinks = styled.aside`
 	img {
 		margin: 0 1rem;
 	}
-	/* justify-content: space-between; */
-
-	/* display: flex;
-		align-self: center;
-		justify-content: space-between;
-	} */
 `;
-
+/**
+ * Funktionen tar emot data som parameter, som kommer från contentful via vår graphql fråga. Vi mappar sedan om datan så
+ * vi kan nå dem utan att hårdkoda in värdet.
+ * @param {*} data
+ * @returns ContactPage
+ */
 const ContactPage = ({ data }) => {
 	return (
 		<>
@@ -72,9 +71,12 @@ const ContactPage = ({ data }) => {
 		</>
 	);
 };
-
+/**
+ * Denna graphql fråga går till contentful och frågar efter allContentfulContactMe ,allContentfulContactLinks och allContentfulNav.
+ * Den får sedan en respons som ContatPage tar emot som data.
+ */
 export const query = graphql`
-	query MyQuery {
+	query ContactMePageQuery {
 		allContentfulContactMe {
 			nodes {
 				contactMe

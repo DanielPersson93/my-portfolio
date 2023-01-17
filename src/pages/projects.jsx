@@ -13,8 +13,8 @@ const StyledFilter = styled.div`
 const StyledLink = styled(Link)`
 	color: black;
 	transition: ease-in 0.3s;
-	margin: 1rem 0.5rem;
-	padding: 0.5rem;
+	margin: 2rem 0.5rem;
+	padding: 0.5rem 1.5rem;
 	border-radius: 10px;
 	background-color: #f95a06;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -30,7 +30,13 @@ const StyledLink = styled(Link)`
 		transition: ease-in 0s;
 	}
 `;
-
+/**
+ * Detta är en funktion som skapar upp ProjectsPage den tar emot data som kommer från contentful.
+ * den har ett flertal lopar som mappar om datat den motager så att varje datapunkt görs om till en egen och skriver,
+ * även ut dess data för varje punkt.
+ * @param {*} data
+ * @returns ProductPage
+ */
 const ProjectsPage = ({ data }) => {
 	return (
 		<>
@@ -43,6 +49,7 @@ const ProjectsPage = ({ data }) => {
 						</StyledLink>
 					))}
 				</StyledFilter>
+
 				{data.allContentfulPost.nodes.map((node, i) => (
 					<article className="project-article" key={`${node.title}-${i}`}>
 						<h2>{node.title}</h2>
@@ -67,9 +74,12 @@ const ProjectsPage = ({ data }) => {
 		</>
 	);
 };
-
+/**
+ * Detta är min fråga som går till contentful,
+ * den hämtar allContentfulPost och allContentfulNav
+ */
 export const query = graphql`
-	query MyQuery {
+	query ProjectPageQuery {
 		allContentfulPost {
 			nodes {
 				slug

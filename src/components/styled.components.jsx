@@ -1,3 +1,7 @@
+/**
+ * Detta är en fil med styledComponents som återanvänds i flera filer.
+ */
+
 import styled from "styled-components";
 
 export const StyledPictureDiv = styled.div`
@@ -15,9 +19,6 @@ export const StyledImg = styled.img`
 	border-radius: 0.2rem;
 	margin: 1rem;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	@media screen and (max-width: 500px) {
-		width: 100%;
-	}
 `;
 
 export const StyledProfileImage = styled.img`

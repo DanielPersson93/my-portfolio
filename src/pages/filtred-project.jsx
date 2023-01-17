@@ -8,10 +8,10 @@ const StyledViewProjects = styled(Link)`
 	color: black;
 	background-color: #f95a06;
 	border-radius: 1rem;
-	width: 10rem;
+	padding: 0.5rem 1.5rem;
 	text-align: center;
 	transition: ease-in 0.3s;
-	margin: 1rem 0;
+	margin: 2rem 0;
 	&:hover {
 		transition: ease-in 0.3s;
 		background-color: #f95b0649;
@@ -37,6 +37,12 @@ const StyledLink = styled(Link)`
 		color: #f95a06;
 	}
 `;
+/**
+ * Denna funktion tar emot ett data som är filtrerat från contentful i detta fall i allContentfulPost. Där den sedan
+ * listar ut datan den tar emot som response
+ * @param {*} data
+ * @returns filtredProject
+ */
 const filtredProject = ({ data }) => {
 	return (
 		<>
@@ -67,8 +73,13 @@ const filtredProject = ({ data }) => {
 		</>
 	);
 };
+/**
+ * Frågan går mot contentful, och hämtar den filtrerade allContentfulPost vars kategori stämmer överrens med kategorin.
+ * Om det finns flera i den kategorin så vill vi endast skriva ut en av dessa.
+ * Den hämtar även allContentfulNav
+ */
 export const query = graphql`
-	query MyQuery($category: String) {
+	query FiltredListPageQuery($category: String) {
 		allContentfulPost(filter: { category: { eq: $category } }) {
 			nodes {
 				slug

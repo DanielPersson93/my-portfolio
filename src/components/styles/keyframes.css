@@ -1,3 +1,6 @@
+/*
+* Detta är en animation som finns på page 404 och importeras sedan i main.css
+*/
 @keyframes float {
 	0% {
 		transform: translatey(0px);

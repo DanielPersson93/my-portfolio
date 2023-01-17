@@ -55,7 +55,11 @@ const StyledHomeContainer = styled.article`
 	@media screen {
 	}
 `;
-
+/**
+ * Denna funktion förväntas ta emot en parameter med massa data från contentful och sedan returnerar den IndexPage
+ * @param {*} data
+ * @returns Indexpage
+ */
 const IndexPage = ({ data }) => {
 	return (
 		<>
@@ -92,9 +96,12 @@ const IndexPage = ({ data }) => {
 		</>
 	);
 };
-
+/**
+ * Denna fråga går till contentful och datan som return tar IndexPage emot som en parameter.
+ * frågan går till allContentfulHome och allContentfulNav.
+ */
 export const query = graphql`
-	query MyQuery {
+	query HomePageQuery {
 		allContentfulHome {
 			nodes {
 				title

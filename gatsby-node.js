@@ -1,7 +1,13 @@
 const path = require('path')
-
+/**
+ * Den skapar upp och exporterar de nya sidorna till de olika filerna vi har angivit. 
+ * @param {*} graphql, actions 
+ */
 exports.createPages = async ({ graphql, actions }) => {
 
+    /**
+     * graphql frågan till contentful
+     */
     const { data: singleData } = await graphql(`
         query getAllSlugs {
             allContentfulPost {
@@ -13,7 +19,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
 `
     )
-
+    /**
+     * Lopar igenom och skapar upp en ny singlepage för varje project vi har, den tar då även slugen och lägger till i sökvägen
+     */
     singleData.allContentfulPost.nodes.forEach(node => {
         actions.createPage({
             //URL
@@ -25,7 +33,9 @@ exports.createPages = async ({ graphql, actions }) => {
         })
     })
 
-
+    /**
+     * Vår graphql fråga som går mot contentful.
+     */
     const { data: filtredData } = await graphql(`
         query getAllSlugs {
             allContentfulPost {
@@ -37,7 +47,9 @@ exports.createPages = async ({ graphql, actions }) => {
         }
 `
     )
-
+    /**
+     * Denna funktion lopar igenom varje node i detta fall varje object och skapar upp en ny sida för varje filtrerat project(post)
+     */
     filtredData.allContentfulPost.nodes.forEach(node => {
         actions.createPage({
             //URL

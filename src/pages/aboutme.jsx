@@ -42,7 +42,11 @@ const StyledLifeExperience = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 `;
-
+/**
+ *  Denna funktion tar emot data från contentful och mappar ut datan som vi får i respons.
+ * @param {*} data
+ * @returns AboutPage
+ */
 const AboutPage = ({ data }) => {
 	const [about] = data.allContentfulAboutMe.nodes;
 
@@ -90,9 +94,12 @@ const AboutPage = ({ data }) => {
 		</>
 	);
 };
-
+/**
+ * frågan går till contentful med hjälp av vår graphql fråga, responen den får tillbaka tar AboutPage som en parameter
+ * allContentfulAboutMe, allContentfulNav,allContentfulWorkExperience, allContentfulEducation
+ */
 export const query = graphql`
-	query MyQuery {
+	query AboutMePageQuery {
 		allContentfulAboutMe {
 			nodes {
 				name
