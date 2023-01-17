@@ -87,7 +87,7 @@ const SinglePage = ({ data }) => {
  * den hämtar en specifik post från allContentfulPost vars söksträng stämmer överrens med söksträngen,vi skickar med
  */
 export const query = graphql`
-	query SinglePageQuery($slug: String!) {
+	query SinglePageQuery($slug: String) {
 		contentfulPost(slug: { eq: $slug }) {
 			title
 			link
