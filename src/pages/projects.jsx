@@ -88,6 +88,7 @@ export const query = graphql`
 				excerpt
 				projectPictures {
 					url
+					title
 				}
 			}
 			distinct(field: { category: { category: SELECT } })
